@@ -81,11 +81,6 @@ bot.on("message", async message => {
     };
   }
 
-   if (message.content == "heck") message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
-   if (message.content == "darn") message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
-   if (message.content == "hell") message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
-
-
   let curxp = xp[message.author.id].xp;
   let curlvl = xp[message.author.id].level;
   let nxtLvl = xp[message.author.id].level * 300;
@@ -123,6 +118,10 @@ bot.on("message", async message => {
   setTimeout(() => {
     cooldown.delete(message.author.id)
   }, cdseconds * 1000)
+
+  if (message.content == "heck") message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
+  if (message.content == "darn") message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
+  if (message.content == "hell") message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
 
 });
 
