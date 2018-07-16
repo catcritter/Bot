@@ -81,6 +81,8 @@ bot.on("message", async message => {
     };
   }
 
+   if (message.content == "heck", "darn", "hell",) message.reply("DONT SWEAR YOU FUCKING WANKER I WILL SHOVE YOU OFF A CLIFF! I WILL SHOW YOU TRUE PAIN!")
+
 
   let curxp = xp[message.author.id].xp;
   let curlvl = xp[message.author.id].level;
