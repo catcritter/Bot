@@ -33,6 +33,6 @@ const define = function(message) {
 	return;
 }
 
-module.exports.help ={
+module.exports.help = {
 name: "Define"
 }
