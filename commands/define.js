@@ -36,5 +36,5 @@ const define = function(message) {
 
 
 module.exports.help = {
-name: "Define"
+name: "define"
 }
