@@ -31,6 +31,6 @@ module.exports.run = async (client, message, args) => {
     }
 }
 
-module.exports.help ={
+module.exports.help = {
 name: "userinfo"
 }
