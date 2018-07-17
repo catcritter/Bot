@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const unirest = require('unirest');
 
 module.exports.run = async (bot, message, args) => {
-	
+
 const define = function(message) {
 	var splits = message.content.split(' ');
 	splits.splice(0, 2);
@@ -31,7 +31,7 @@ const define = function(message) {
 					message.channel.sendMessage(`What the hell is ${word} retard...`);
 				};
     		};
-    	})};
+    	});
 	return;
 }
 
