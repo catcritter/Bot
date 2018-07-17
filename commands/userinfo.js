@@ -29,7 +29,6 @@ module.exports.run = async (client, message, args) => {
 		.setFooter(`Replying to ${message.author.username}#${message.author.discriminator}`)
      message.channel.send({embed});
     }
-}
 
 module.exports.help = {
 name: "userinfo"
