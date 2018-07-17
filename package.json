@@ -2,6 +2,7 @@
   "name": "",
   "version": "",
   "dependencies": {
+    "define": "^1.0.1",
     "discord.io": "^2.5.3",
     "discord.js": "^11.3.2",
     "moment": "^2.22.2",
