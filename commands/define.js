@@ -17,7 +17,7 @@ const define = function(message) {
     			if (res.body.result_type == 'exact') {
     				const item = res.body.list[0];
     				const definition = item.definition ? `${item.definition}` : '';
-    				const example = item.example ? `${item.example}` : '';
+    				const example = item.example ? item.example : '';
     				message.channel.sendEmbed({ description:
     					`
 							**${word}**
@@ -33,7 +33,6 @@ const define = function(message) {
     		};
     	})};
 	return;
-}
 }
 
 module.exports.help = {
