@@ -106,6 +106,85 @@ bot.on("message", async message => {
   if(!message.member.hasPermission("ADMINISTRATOR")){
     cooldown.add(message.author.id);
   }
+  if (command === "roulette") {
+    sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("sadly you do not have any coins yet, Chat some more!");
+      if (row.points == 0) return message.reply("you don't have any coins!");
+
+      function getArgs() {
+      var args = Array.prototype.slice.call(arguments);
+      }
+
+      var betAmount = Math.floor(args[0]);
+      var availPoints = row.points;
+
+      if (betAmount > 500)
+        betAmount = 500;
+
+      if (!isInt(betAmount)){
+	       message.reply('enter integers only!'); return;}
+
+      if (betAmount < 0){message.reply('you can not bet negative.'); betAmount = 0; return;}
+
+      if (betAmount > availPoints){message.reply('you can not bet more than you have.');return;}
+
+
+      if (betAmount < 0){message.reply('you do not have any coins to bet!');betAmount=0;return;}
+      var betCall = args[1];
+
+      var random = (Math.floor(Math.random() * 36) + 1)
+      if (random == betCall) {
+          winAmount = betAmount * 36;
+          changeAmount = winAmount - betAmount;
+          sql.run(`UPDATE scores SET points = ${row.points + changeAmount} WHERE userId = ${message.author.id}`);
+          message.reply(`Result: ${random} (same)!! YOU BET ${betAmount} POINTS AND WON ${winAmount} points! Goooood shit!!!`);
+      }
+
+        // win on RED
+      else if ((isOdd(random) == 1) && (betCall.toUpperCase() === 'RED') && (betCall != 36) && (betCall != 0)) {
+        winAmount = betAmount * 2;
+        changeAmount = winAmount - betAmount;
+        sql.run(`UPDATE scores SET points = ${row.points + changeAmount} WHERE userId = ${message.author.id}`);
+        message.reply(`Result: ${random} (red). You bet ${betAmount} and won ${winAmount} points!`);
+      }
+
+      // win on BLACK
+      else if ((isOdd(random) == 0) && (betCall.toUpperCase() === 'BLACK') && (betCall != 36) && (betCall != 0)) {
+        winAmount = betAmount * 2;
+        changeAmount = winAmount - betAmount;
+        sql.run(`UPDATE scores SET points = ${row.points + changeAmount} WHERE userId = ${message.author.id}`);
+        message.reply(`Result: ${random} (black). You bet ${betAmount} and won ${winAmount} points!`);
+      }
+
+      // win on ZERO
+      else if ((random == 0) && (betCall == 0)) {
+          winAmount = betAmount * 36;
+          changeAmount = winAmount - betAmount;
+          sql.run(`UPDATE scores SET points = ${row.points + changeAmount} WHERE userId = ${message.author.id}`);
+          message.reply(`Oy Fuck! Result: ${random}. You bet ${betAmount} and won ${winAmount} points!`);
+      }
+
+      // win on DOUBLE ZERO
+      else if ((random == 36) && (betCall == 36)) {
+          winAmount = betAmount * 36;
+          changeAmount = winAmount - betAmount;
+          sql.run(`UPDATE scores SET points = ${row.points + changeAmount} WHERE userId = ${message.author.id}`);
+          message.reply(`Damn son! Result: ${random}. You bet ${betAmount} and won ${winAmount} points!`);
+      }
+
+      else if ((betCall.toUpperCase() === 'ODD') || (betCall.toUpperCase() === 'EVEN')){
+	  message.channel.send('You must call RED or BLACK.');}
+        // L O S E R
+      else {
+        winAmount = 0;
+        sql.run(`UPDATE scores SET points = ${row.points - betAmount} WHERE userId = ${message.author.id}`);
+        message.reply(`Result: ${random}. You bet ${betAmount} and lose ${betAmount} points! Oof.`);
+      }
+
+    });
+    winAmount = 0;
+    return;
+  }
 
 
   let messageArray = message.content.split(" ");
