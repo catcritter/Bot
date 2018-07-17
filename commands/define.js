@@ -31,7 +31,7 @@ const define = function(message) {
 					message.channel.sendMessage(`What the hell is ${word} retard...`);
 				};
     		};
-    	});
+    	})};
 	return;
 }
 
