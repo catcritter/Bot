@@ -34,7 +34,7 @@ const define = function(message) {
     	})};
 	return;
 }
-
+}
 
 module.exports.help = {
 name: "define"
