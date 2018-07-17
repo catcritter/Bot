@@ -4,6 +4,7 @@
   "dependencies": {
     "discord.io": "^2.5.3",
     "discord.js": "^11.3.2",
+    "moment": "^2.22.2",
     "ms": "^2.1.1",
     "superagent": "^3.8.3"
   },
